@@ -5,6 +5,6 @@ const routes = Router()
 
 routes.get("/contacts", ContactController.index);
 routes.get("/contact/:id", ContactController.show)
-// routes.delete("/contact/:id", ContactController.delete)
+routes.delete("/contact/:id", ContactController.delete)
 
 module.exports = routes
