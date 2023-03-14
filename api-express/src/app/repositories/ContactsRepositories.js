@@ -8,14 +8,33 @@ const contacts = [
     phone: "67496749",
     categori_id: v4(),
   },
+  {
+    id: v4(),
+    name: "Didis",
+    email: "didis@gmail.com",
+    phone: "694846749",
+    categori_id: v4(),
+  },
 ];
 
 class ContactsRepositories {
   findAll() {
     return new Promise((resolve) => {
-        resolve(contacts)
+      resolve(contacts);
     });
   }
+
+  findById(id) {
+    return new Promise((resolve) => {
+      resolve(contacts.find((contact) => contact.id === id));
+    });
+  }
+
+//   delete(id){
+//     return new Promise((resolve) =>{
+
+//     })
+//   }
 }
 
 module.exports = new ContactsRepositories();
