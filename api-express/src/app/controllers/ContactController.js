@@ -19,8 +19,31 @@ class ContactController {
     res.json(contact);
   }
 
-  store() {
-    // criar novo registro
+  async store(req, res) {
+    const { name, email, phone, category_id } = req.body;
+
+    const contactsExists = await ContactsRepositories.findByEmail(email);
+
+    if (!name && !email) {
+      return res
+        .status(400)
+        .json({ error: "Insert all required camps" });
+    }
+
+    if (contactsExists) {
+      return res
+        .status(400)
+        .json({ error: "this email is already been token" });
+    }
+
+    const contact = await ContactsRepositories.create({
+      name,
+      email,
+      phone,
+      category_id,
+    });
+
+    res.json(contact);
   }
   update() {
     //editar um registro
